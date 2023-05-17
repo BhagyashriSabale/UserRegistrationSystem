@@ -103,7 +103,7 @@ namespace UserRegistrationSystem
         }
         static bool IsValidPassword(string password)
         {
-            if (password.Length >= 8)
+            if (password.Length >= 8 && ContainsUppercase(password))
             {
                 return true;
             }
@@ -111,6 +111,17 @@ namespace UserRegistrationSystem
             { 
                 return false; 
             }
+        }
+        static bool ContainsUppercase(string value)
+        {
+            foreach (char c in value)
+            {
+                if (char.IsUpper(c))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
