@@ -20,13 +20,16 @@ namespace UserRegistrationSystem
             Console.Write("Enter Mobile Number: ");
             string mobileNum = Console.ReadLine();
 
-            if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email) && IsValidMobileNumber(mobileNum))
+            Console.Write("Enter PassWord: ");
+            string password= Console.ReadLine();
+
+            if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email) && IsValidMobileNumber(mobileNum) && IsValidPassword(password))
             {
-                Console.WriteLine("First name, Last name, Email and Mobilenumber is valid.");
+                Console.WriteLine("First name, Last name, Email, Mobilenumber and Password is valid.");
             }
             else
             {
-                Console.WriteLine("First Name, Last name, Email and MobileNumber is Invalid.");
+                Console.WriteLine("First Name, Last name, Email, MobileNumber and Password is Invalid.");
             }
         }
         static bool IsValidFirstName(string firstName)
@@ -97,6 +100,17 @@ namespace UserRegistrationSystem
                 }
             }
             return true;
-        } 
+        }
+        static bool IsValidPassword(string password)
+        {
+            if (password.Length >= 8)
+            {
+                return true;
+            }
+            else 
+            { 
+                return false; 
+            }
+        }
     }
 }
