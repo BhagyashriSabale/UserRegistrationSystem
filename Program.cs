@@ -103,7 +103,7 @@ namespace UserRegistrationSystem
         }
         static bool IsValidPassword(string password)
         {
-            if (password.Length >= 8 && ContainsUppercase(password) && ContainsNumeric(password))
+            if (password.Length >= 8 && ContainsUppercase(password) && ContainsNumeric(password) && HasExactlyOneSpecialCharacter(password))
             {
                 return true;
             }
@@ -133,6 +133,18 @@ namespace UserRegistrationSystem
                 }
             }
             return false;
+        }
+        static bool HasExactlyOneSpecialCharacter(string value)
+        {
+            int count = 0;
+            foreach (char c in value)
+            {
+                if (!char.IsLetterOrDigit(c))
+                {
+                    count++;
+                }
+            }
+            return count == 1;
         }
     }
 }
