@@ -17,13 +17,16 @@ namespace UserRegistrationSystem
             Console.Write("Enter Valid Email: ");
             string email = Console.ReadLine();
 
-            if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email))
+            Console.Write("Enter Mobile Number: ");
+            string mobileNum = Console.ReadLine();
+
+            if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email) && IsValidMobileNumber(mobileNum))
             {
-                Console.WriteLine("First name, Last name and Email is valid.");
+                Console.WriteLine("First name, Last name, Email and Mobilenumber is valid.");
             }
             else
             {
-                Console.WriteLine("First Name, Last name and Email is Invalid.");
+                Console.WriteLine("First Name, Last name, Email and MobileNumber is Invalid.");
             }
         }
         static bool IsValidFirstName(string firstName)
@@ -73,5 +76,27 @@ namespace UserRegistrationSystem
             }
             return false;
         }
+        static bool IsValidMobileNumber(string mobileNum)
+        {
+            if (mobileNum.Length == 13 && mobileNum[2] == ' ' && IsNumeric(mobileNum.Substring(3)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        static bool IsNumeric(string value)
+        {
+            foreach (char c in value)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        } 
     }
 }
