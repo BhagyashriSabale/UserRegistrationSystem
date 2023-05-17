@@ -13,13 +13,17 @@ namespace UserRegistrationSystem
 
             Console.Write("Enter Last Name: ");
             string lastName= Console.ReadLine();
-            if (IsValidFirstName(firstName) && IsValidLastName(lastName))
+
+            Console.Write("Enter Valid Email: ");
+            string email = Console.ReadLine();
+
+            if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email))
             {
-                Console.WriteLine("First name and Last name is valid.");
+                Console.WriteLine("First name, Last name and Email is valid.");
             }
             else
             {
-                Console.WriteLine("First Name and Last name is Invalid.");
+                Console.WriteLine("First Name, Last name and Email is Invalid.");
             }
         }
         static bool IsValidFirstName(string firstName)
@@ -43,6 +47,31 @@ namespace UserRegistrationSystem
             {
                 return false;
             }
+        }
+        static bool IsValidEmail(string email)
+        {
+            int atIndex = email.IndexOf('@');
+            int dotIndex = email.LastIndexOf('.');
+            if (atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.Length - 1)
+            {
+                string[] parts = email.Split('@');
+                if (parts.Length == 2)
+                {
+                    string[] domainParts = parts[1].Split('.');
+                    if (domainParts.Length >= 2)
+                    {
+                        foreach (string part in domainParts)
+                        {
+                            if (part.Length < 2)
+                            {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
