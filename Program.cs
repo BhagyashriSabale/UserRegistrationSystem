@@ -23,6 +23,8 @@ namespace UserRegistrationSystem
             Console.Write("Enter PassWord: ");
             string password= Console.ReadLine();
 
+            ClearEmailSamples();
+
             if (IsValidFirstName(firstName) && IsValidLastName(lastName) && IsValidEmail(email) && IsValidMobileNumber(mobileNum) && IsValidPassword(password))
             {
                 Console.WriteLine("First name, Last name, Email, Mobilenumber and Password is valid.");
@@ -145,6 +147,17 @@ namespace UserRegistrationSystem
                 }
             }
             return count == 1;
+        }
+        static void ClearEmailSamples()
+        {
+            Console.WriteLine("\nClearing email samples...");
+            string[] emailSamples = { "abc.xyz@bl.co.in", "john.doe@example.com", "test@test", "invalid.email.com", "user@domain.co", "name@domain.co.in" };
+
+            foreach (string email in emailSamples)
+            {
+                Console.WriteLine($"Clearing email: {email}");
+                // Code to clear the email samples goes here
+            }
         }
     }
 }
